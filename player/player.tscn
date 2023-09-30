@@ -1,9 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx0gdjo2whej4"]
+[gd_scene load_steps=10 format=3 uid="uid://dx0gdjo2whej4"]
 
 [ext_resource type="PackedScene" uid="uid://dw2rca5vp0mpg" path="res://player/player.glb" id="1_sgjy7"]
-[ext_resource type="Material" uid="uid://clbmc8knjgykk" path="res://endesga-32.material" id="2_1a5ys"]
 [ext_resource type="Script" path="res://player/player.gd" id="2_avd20"]
+[ext_resource type="Shader" path="res://endesga-32.gdshader" id="3_xctbv"]
 [ext_resource type="PackedScene" uid="uid://bb7i7hdt3bksq" path="res://projectile_spawner/projectile_spawner.tscn" id="4_4tmok"]
+[ext_resource type="Texture2D" uid="uid://c8i0at6in0hl" path="res://assets/endesga-32-32x.png" id="4_o47m2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xwj40"]
+render_priority = 0
+shader = ExtResource("3_xctbv")
+shader_parameter/color_index = 17
+shader_parameter/albedo = ExtResource("4_o47m2")
 
 [sub_resource type="Animation" id="Animation_8vxbp"]
 resource_name = "shoot"
@@ -37,10 +44,11 @@ height = 1.0
 script = ExtResource("2_avd20")
 
 [node name="Player" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_1a5ys")
+surface_material_override/0 = SubResource("ShaderMaterial_xwj40")
 
 [node name="Bullet Spawner" parent="Player" index="0" instance=ExtResource("4_4tmok")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+color_index = 17
 
 [node name="Timer" type="AnimationPlayer" parent="Player/Bullet Spawner" index="0"]
 root_node = NodePath("../../..")
