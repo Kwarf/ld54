@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://1b7wygro7hm6"]
+
+[ext_resource type="PackedScene" uid="uid://dx0gdjo2whej4" path="res://player/player.tscn" id="1_dpmlw"]
+
+[sub_resource type="Environment" id="Environment_ytnxe"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_20d83"]
+size = Vector2(16, 13)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0xy1"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_o3ev4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_k7ac8"]
+size = Vector3(16, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kbjws"]
+size = Vector3(1, 1, 11)
+
+[node name="Level 1" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ytnxe")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2.08165e-12, 8, 7)
+projection = 1
+current = true
+size = 9.0
+far = 30.0
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_20d83")
+surface_material_override/0 = SubResource("StandardMaterial3D_n0xy1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_o3ev4")
+
+[node name="Wall_N" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, -6)
+mesh = SubResource("BoxMesh_k7ac8")
+
+[node name="Wall_S" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 6)
+mesh = SubResource("BoxMesh_k7ac8")
+
+[node name="Wall_E" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.5, 2.08165e-12)
+mesh = SubResource("BoxMesh_kbjws")
+
+[node name="Wall_W" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.5, 2.08165e-12)
+mesh = SubResource("BoxMesh_kbjws")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 4.85905e-10, 1.93033e-08, -1.93033e-08, 1.93034e-08, 1, 4.85905e-10, -1, 1.93034e-08, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_dpmlw")]

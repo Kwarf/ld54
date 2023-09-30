@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx0gdjo2whej4"]
+
+[ext_resource type="PackedScene" uid="uid://dw2rca5vp0mpg" path="res://player/player.glb" id="1_sgjy7"]
+[ext_resource type="Material" uid="uid://clbmc8knjgykk" path="res://endesga-32.material" id="2_1a5ys"]
+[ext_resource type="Script" path="res://player/player.gd" id="2_avd20"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rnanw"]
+radius = 0.25
+height = 1.0
+
+[node name="Player" instance=ExtResource("1_sgjy7")]
+script = ExtResource("2_avd20")
+
+[node name="Player" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_1a5ys")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12)
+shape = SubResource("CapsuleShape3D_rnanw")
