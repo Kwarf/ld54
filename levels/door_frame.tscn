@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://0pbhqk6lles7"]
+[gd_scene load_steps=12 format=3 uid="uid://0pbhqk6lles7"]
 
 [ext_resource type="PackedScene" uid="uid://c2kd4k2rupgf7" path="res://levels/door_frame.glb" id="1_leeu5"]
 [ext_resource type="Script" path="res://levels/door_frame.gd" id="2_ekoq2"]
@@ -75,6 +75,8 @@ _data = {
 "open": SubResource("Animation_wg7c5")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_eic2u"]
+
 [node name="DoorFrame" instance=ExtResource("1_leeu5")]
 script = ExtResource("2_ekoq2")
 
@@ -94,3 +96,9 @@ transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_rt8t2")
 }
+
+[node name="TransitionTrigger" type="Area3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TransitionTrigger" index="0"]
+shape = SubResource("BoxShape3D_eic2u")

@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 [autoload]
 
 EventBus="*res://event_bus.gd"
+GameState="*res://game_state.gd"
+Transition="*res://levels/transition.tscn"
 
 [display]
 
