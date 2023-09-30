@@ -1,11 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://1b7wygro7hm6"]
 
 [ext_resource type="PackedScene" uid="uid://dx0gdjo2whej4" path="res://player/player.tscn" id="1_dpmlw"]
-
-[sub_resource type="Environment" id="Environment_ytnxe"]
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.2
+[ext_resource type="Environment" uid="uid://72wy6b7c3sxo" path="res://environment.tres" id="1_nxtxi"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_20d83"]
 size = Vector2(16, 13)
@@ -23,7 +19,7 @@ size = Vector3(1, 1, 11)
 [node name="Level 1" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ytnxe")
+environment = ExtResource("1_nxtxi")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2.08165e-12, 8, 7)

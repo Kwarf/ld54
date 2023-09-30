@@ -1,15 +1,22 @@
 extends CharacterBody3D
 
-@onready var camera: Camera3D = get_viewport().get_camera_3d()
-@onready var mesh: MeshInstance3D = $Player
 const SPEED = 5.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+@onready var camera: Camera3D = get_viewport().get_camera_3d()
+@onready var mesh: MeshInstance3D = $Player
+@onready var bullet_timer: AnimationPlayer = $"Player/Bullet Spawner/Timer"
+
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
+func _input(event: InputEvent) -> void:
+	if not bullet_timer.is_playing() and event.is_action_pressed("shoot"):
+		bullet_timer.play("shoot")
+	elif event.is_action_released("shoot"):
+		bullet_timer.stop()
+
+
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -21,7 +28,6 @@ func _physics_process(delta: float) -> void:
 	mesh.rotation.y = -angle + offset
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:

@@ -1,8 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://dx0gdjo2whej4"]
+[gd_scene load_steps=8 format=3 uid="uid://dx0gdjo2whej4"]
 
 [ext_resource type="PackedScene" uid="uid://dw2rca5vp0mpg" path="res://player/player.glb" id="1_sgjy7"]
 [ext_resource type="Material" uid="uid://clbmc8knjgykk" path="res://endesga-32.material" id="2_1a5ys"]
 [ext_resource type="Script" path="res://player/player.gd" id="2_avd20"]
+[ext_resource type="PackedScene" uid="uid://bb7i7hdt3bksq" path="res://projectile_spawner/projectile_spawner.tscn" id="4_4tmok"]
+
+[sub_resource type="Animation" id="Animation_8vxbp"]
+resource_name = "shoot"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Bullet Spawner")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vcago"]
+_data = {
+"shoot": SubResource("Animation_8vxbp")
+}
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rnanw"]
 radius = 0.25
@@ -13,6 +38,15 @@ script = ExtResource("2_avd20")
 
 [node name="Player" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_1a5ys")
+
+[node name="Bullet Spawner" parent="Player" index="0" instance=ExtResource("4_4tmok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="Timer" type="AnimationPlayer" parent="Player/Bullet Spawner" index="0"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_vcago")
+}
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12)
