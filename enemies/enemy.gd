@@ -1,6 +1,7 @@
+class_name Enemy
 extends AnimatableBody3D
 
-@export var bullet_interval = 0.5
+@export var bullet_interval = 1.0
 
 var health = 3
 
@@ -31,4 +32,5 @@ func take_damage() -> void:
 
 	# If health is 0 or less, destroy this enemy
 	if health <= 0:
+		EventBus.enemy_killed.emit(self)
 		queue_free()
