@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxrgxd1luspma"]
+
+[ext_resource type="PackedScene" uid="uid://c4jl12sxn3d1g" path="res://levels/1/walls.glb" id="1_1pm2f"]
+[ext_resource type="Shader" path="res://endesga-32.gdshader" id="2_3sghn"]
+[ext_resource type="Texture2D" uid="uid://c8i0at6in0hl" path="res://assets/endesga-32-32x.png" id="3_7agyc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y3k5a"]
+render_priority = 0
+shader = ExtResource("2_3sghn")
+shader_parameter/color_index = 22
+shader_parameter/albedo = ExtResource("3_7agyc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gqhjk"]
+size = Vector3(16, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ia07y"]
+size = Vector3(7, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cxpvc"]
+size = Vector3(1, 1, 11)
+
+[node name="Walls" instance=ExtResource("1_1pm2f")]
+
+[node name="Wall" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_y3k5a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 6)
+shape = SubResource("BoxShape3D_gqhjk")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.5, -6)
+shape = SubResource("BoxShape3D_ia07y")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.5, -6)
+shape = SubResource("BoxShape3D_ia07y")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.5, 0)
+shape = SubResource("BoxShape3D_cxpvc")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.5, 0)
+shape = SubResource("BoxShape3D_cxpvc")

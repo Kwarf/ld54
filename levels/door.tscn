@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy1muryjr3a2s"]
+
+[ext_resource type="PackedScene" uid="uid://bwcvx8hmp1wff" path="res://levels/door.glb" id="1_i2mck"]
+[ext_resource type="Shader" path="res://endesga-32.gdshader" id="2_2ohd4"]
+[ext_resource type="Texture2D" uid="uid://c8i0at6in0hl" path="res://assets/endesga-32-32x.png" id="3_mvh80"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b8g7j"]
+render_priority = 0
+shader = ExtResource("2_2ohd4")
+shader_parameter/color_index = 19
+shader_parameter/albedo = ExtResource("3_mvh80")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qvla8"]
+points = PackedVector3Array(-0.462731, 0.120524, 0.492207, -0.0408553, 1.11014, 0.558518, -0.0408553, 0.125228, 0.441663, -0.474909, 0.97657, 0.441663, -0.0408553, 0.141755, 0.558518, -0.45824, 0.97657, 0.558518, -0.45824, 0.141755, 0.558518, -0.474909, 0.141755, 0.441663, -0.0408553, 1.11014, 0.441663, -0.0076974, 1.09388, 0.492303, -0.00787269, 0.173796, 0.507873, -0.083748, 1.13128, 0.507972, -0.491256, 0.953414, 0.507874, -0.508348, 0.141755, 0.475055, -0.0480542, 0.110082, 0.508137, -0.415098, 1.02009, 0.50796, -0.45824, 0.125228, 0.441663, -0.0909638, 1.11014, 0.441663, -0.0909638, 1.11014, 0.558518, -0.0076974, 0.173468, 0.492303, -0.00787269, 1.09354, 0.507873, -0.0351113, 1.13435, 0.492161, -0.492099, 0.156667, 0.507901, -0.415165, 1.02025, 0.492217, -0.44147, 0.993202, 0.558518, -0.491329, 0.953512, 0.492305, -0.462678, 0.12065, 0.507972, -0.0836805, 1.13149, 0.492205, -0.44147, 0.993202, 0.441663, -0.0351755, 1.13419, 0.508018)
+
+[node name="Door" instance=ExtResource("1_i2mck")]
+
+[node name="Door" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_b8g7j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+shape = SubResource("ConvexPolygonShape3D_qvla8")
