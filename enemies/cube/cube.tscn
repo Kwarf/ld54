@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmaggl3q1u7is"]
+
+[ext_resource type="PackedScene" uid="uid://cv55p40bemjb0" path="res://enemies/cube/cube.glb" id="1_o6g0e"]
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="2_s2hwu"]
+[ext_resource type="Shader" path="res://endesga-32.gdshader" id="3_0koev"]
+[ext_resource type="Texture2D" uid="uid://c8i0at6in0hl" path="res://assets/endesga-32-32x.png" id="4_15mpx"]
+[ext_resource type="PackedScene" uid="uid://bb7i7hdt3bksq" path="res://projectile_spawner/projectile_spawner.tscn" id="5_rhg6i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hai0e"]
+render_priority = 0
+shader = ExtResource("3_0koev")
+shader_parameter/color_index = 8
+shader_parameter/albedo = ExtResource("4_15mpx")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwvow"]
+
+[node name="Cube2" instance=ExtResource("1_o6g0e")]
+script = ExtResource("2_s2hwu")
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_hai0e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12)
+shape = SubResource("BoxShape3D_wwvow")
+
+[node name="Projectile Spawners" type="Node3D" parent="." index="2"]
+
+[node name="1" parent="Projectile Spawners" index="0" instance=ExtResource("5_rhg6i")]
+transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, -0.45, 2.08165e-12, 0.5)
+color_index = 8
+
+[node name="2" parent="Projectile Spawners" index="1" instance=ExtResource("5_rhg6i")]
+transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 0.45, 2.08165e-12, 0.5)
+color_index = 8
+
+[node name="3" parent="Projectile Spawners" index="2" instance=ExtResource("5_rhg6i")]
+transform = Transform3D(1, -3.48787e-16, 1.74846e-07, 3.48787e-16, 1, -3.48787e-16, -1.74846e-07, 3.48787e-16, 1, 0.45, 2.08165e-12, -0.5)
+color_index = 8
+
+[node name="4" parent="Projectile Spawners" index="3" instance=ExtResource("5_rhg6i")]
+transform = Transform3D(1, -3.48787e-16, 1.74846e-07, 3.48787e-16, 1, -3.48787e-16, -1.74846e-07, 3.48787e-16, 1, -0.45, 2.08165e-12, -0.5)
+color_index = 8
+
+[node name="5" parent="Projectile Spawners" index="4" instance=ExtResource("5_rhg6i")]
+transform = Transform3D(1.31134e-07, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, 1.31134e-07, 0.5, 2.08165e-12, 0.45)
+color_index = 8
+
+[node name="6" parent="Projectile Spawners" index="5" instance=ExtResource("5_rhg6i")]
+transform = Transform3D(1.31134e-07, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, 1.31134e-07, 0.5, 2.08165e-12, -0.45)
+color_index = 8
+
+[node name="7" parent="Projectile Spawners" index="6" instance=ExtResource("5_rhg6i")]
+transform = Transform3D(-2.18557e-07, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -2.18557e-07, -0.5, 2.08165e-12, -0.45)
+color_index = 8
+
+[node name="8" parent="Projectile Spawners" index="7" instance=ExtResource("5_rhg6i")]
+transform = Transform3D(-2.18557e-07, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -2.18557e-07, -0.5, 2.08165e-12, 0.45)
+color_index = 8

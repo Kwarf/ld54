@@ -7,6 +7,11 @@ const SPEED = 5.0
 @onready var bullet_timer: AnimationPlayer = $"Player/Bullet Spawner/Timer"
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var health: int = 3
+
+
+func _ready() -> void:
+	add_to_group("player")
 
 
 func _input(event: InputEvent) -> void:
@@ -38,3 +43,9 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func take_damage() -> void:
+	self.health -= 1
+	if health <= 0:
+		get_tree().quit()

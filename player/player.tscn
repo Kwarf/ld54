@@ -49,6 +49,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_xwj40")
 [node name="Bullet Spawner" parent="Player" index="0" instance=ExtResource("4_4tmok")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 color_index = 17
+group = "player_projectile"
 
 [node name="Timer" type="AnimationPlayer" parent="Player/Bullet Spawner" index="0"]
 root_node = NodePath("../../..")
