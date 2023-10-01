@@ -25,6 +25,7 @@ jobs:
         run: |
           mkdir -v -p build/windows
           godot -v --headless --export-release "Windows Desktop" build/windows/$EXPORT_NAME.exe
+          godot -v --headless --export-release "Windows Desktop" build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -36,6 +37,7 @@ jobs:
         run: |
           mkdir -v -p build/linux
           godot -v --headless --export-release "Linux/X11" build/linux/$EXPORT_NAME.x86_64
+          godot -v --headless --export-release "Linux/X11" build/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -46,6 +48,7 @@ jobs:
       - name: macOS Build
         run: |
           mkdir -v -p build/macos
+          godot -v --headless --export-release "macOS" build/macos/$EXPORT_NAME.zip
           godot -v --headless --export-release "macOS" build/macos/$EXPORT_NAME.zip
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
