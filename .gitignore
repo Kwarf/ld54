@@ -1,7 +1,5 @@
 # Godot 4+ specific ignores
 .godot/*
-!.godot/imported
-!.godot/global_script_class_cache.cfg
 
 # Blender
 *.blend1
