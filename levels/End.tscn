@@ -1,0 +1,159 @@
+[gd_scene load_steps=15 format=3 uid="uid://c31yk8ai7bxse"]
+
+[ext_resource type="Script" path="res://levels/end.gd" id="1_hsnw7"]
+[ext_resource type="PackedScene" uid="uid://dx0gdjo2whej4" path="res://player/player.tscn" id="1_li45y"]
+[ext_resource type="ArrayMesh" uid="uid://bavu7qh5e1ybj" path="res://levels/dynamic/wall.mesh" id="2_0uwe8"]
+[ext_resource type="Shader" path="res://endesga-32.gdshader" id="3_p6lgm"]
+[ext_resource type="Texture2D" uid="uid://c8i0at6in0hl" path="res://assets/endesga-32-32x.png" id="4_m3enr"]
+[ext_resource type="Texture2D" uid="uid://bcheohws40164" path="res://assets/floor_N.png" id="5_7j8vc"]
+[ext_resource type="Environment" uid="uid://72wy6b7c3sxo" path="res://environment.tres" id="6_ru5y5"]
+
+[sub_resource type="Theme" id="Theme_a2taj"]
+default_font_size = 32
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2krpe"]
+size = Vector3(3, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jvp1o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v811t"]
+render_priority = 0
+shader = ExtResource("3_p6lgm")
+shader_parameter/color_index = 22
+shader_parameter/albedo = ExtResource("4_m3enr")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eglbe"]
+size = Vector2(3, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ayad"]
+albedo_color = Color(0.14902, 0.168627, 0.266667, 1)
+normal_enabled = true
+normal_texture = ExtResource("5_7j8vc")
+uv1_scale = Vector3(0.188, 0.231, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_37dho"]
+
+[node name="End" type="StaticBody3D" groups=["level"]]
+script = ExtResource("1_hsnw7")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndText" type="RichTextLabel" parent="Control"]
+custom_minimum_size = Vector2(1000, 600)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_right = 500.0
+offset_bottom = 600.0
+grow_horizontal = 2
+theme = SubResource("Theme_a2taj")
+text = "The plane once filled with geometric contenders now sits empty, left only with the echo of silent vertices.
+
+The arena of shapes—squares, pentagons, triangles—all faded. A battle of dimensions has ended, leaving you as the sole dimension of life. Witness the empty void around you and reflect; victory comes adorned in silence. 
+
+You are all that remain."
+
+[node name="Stats" type="RichTextLabel" parent="Control"]
+custom_minimum_size = Vector2(1000, 300)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -300.0
+offset_right = 500.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_a2taj")
+bbcode_enabled = true
+text = "[center]Test[/center]"
+
+[node name="Player" parent="." instance=ExtResource("1_li45y")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, -1)
+shape = SubResource("BoxShape3D_2krpe")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 1)
+shape = SubResource("BoxShape3D_2krpe")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 0)
+shape = SubResource("BoxShape3D_jvp1o")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 0)
+shape = SubResource("BoxShape3D_jvp1o")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+mesh = ExtResource("2_0uwe8")
+surface_material_override/0 = SubResource("ShaderMaterial_v811t")
+
+[node name="Wall2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+mesh = ExtResource("2_0uwe8")
+surface_material_override/0 = SubResource("ShaderMaterial_v811t")
+
+[node name="Wall3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+mesh = ExtResource("2_0uwe8")
+surface_material_override/0 = SubResource("ShaderMaterial_v811t")
+
+[node name="Wall4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = ExtResource("2_0uwe8")
+surface_material_override/0 = SubResource("ShaderMaterial_v811t")
+
+[node name="Wall5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+mesh = ExtResource("2_0uwe8")
+surface_material_override/0 = SubResource("ShaderMaterial_v811t")
+
+[node name="Wall6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transparency = 0.5
+mesh = ExtResource("2_0uwe8")
+surface_material_override/0 = SubResource("ShaderMaterial_v811t")
+
+[node name="Wall7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+mesh = ExtResource("2_0uwe8")
+surface_material_override/0 = SubResource("ShaderMaterial_v811t")
+
+[node name="Wall8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+mesh = ExtResource("2_0uwe8")
+surface_material_override/0 = SubResource("ShaderMaterial_v811t")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_eglbe")
+surface_material_override/0 = SubResource("StandardMaterial3D_8ayad")
+
+[node name="FloorCollider" type="CollisionShape3D" parent="."]
+shape = SubResource("WorldBoundaryShape3D_37dho")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("6_ru5y5")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2.08165e-12, 8, 7)
+projection = 1
+current = true
+size = 9.0
+far = 30.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 4.85905e-10, 1.93033e-08, -1.93033e-08, 1.93034e-08, 1, 4.85905e-10, -1, 1.93034e-08, 0, 0, 0)
+shadow_enabled = true

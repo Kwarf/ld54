@@ -1,0 +1,162 @@
+[gd_scene load_steps=9 format=3 uid="uid://dg10kpieimff"]
+
+[ext_resource type="Environment" uid="uid://72wy6b7c3sxo" path="res://environment.tres" id="1_otuh5"]
+[ext_resource type="PackedScene" uid="uid://bxs22didvyp2o" path="res://levels/dynamic/dynamic_level.tscn" id="2_w0ket"]
+[ext_resource type="PackedScene" uid="uid://dx0gdjo2whej4" path="res://player/player.tscn" id="3_uh5yq"]
+[ext_resource type="PackedScene" uid="uid://cs4x6badbnp3j" path="res://enemies/triangle/triangle.tscn" id="4_xo2jw"]
+
+[sub_resource type="Animation" id="Animation_6urmj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Triangle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5, 0, -0.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Triangle2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 0, -0.25)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Triangle:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.523599, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Triangle2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.523599, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lex0i"]
+resource_name = "movement"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Triangle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 0, -0.25), Vector3(-0.5, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Triangle2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0, -0.25), Vector3(0.5, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Triangle:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.523599, 0), Vector3(0, -1.0472, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Triangle2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.523599, 0), Vector3(0, 1.0472, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uexbo"]
+_data = {
+"RESET": SubResource("Animation_6urmj"),
+"movement": SubResource("Animation_lex0i")
+}
+
+[sub_resource type="GDScript" id="GDScript_p3yp4"]
+script/source = "extends AnimationPlayer
+
+
+func _ready() -> void:
+	play(\"movement\")
+"
+
+[node name="Level 7" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_otuh5")
+
+[node name="Dynamic Level" parent="." instance=ExtResource("2_w0ket")]
+width = 4
+height = 4
+next_room = "res://levels/end.tscn"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2.08165e-12, 8, 7)
+projection = 1
+current = true
+size = 9.0
+far = 30.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 4.85905e-10, 1.93033e-08, -1.93033e-08, 1.93034e-08, 1, 4.85905e-10, -1, 1.93034e-08, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("3_uh5yq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Triangle" parent="Enemies" instance=ExtResource("4_xo2jw")]
+transform = Transform3D(0.866026, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866026, -0.5, 0, -0.25)
+
+[node name="Triangle2" parent="Enemies" instance=ExtResource("4_xo2jw")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0.5, 0, -0.25)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies" groups=["level"]]
+libraries = {
+"": SubResource("AnimationLibrary_uexbo")
+}
+script = SubResource("GDScript_p3yp4")

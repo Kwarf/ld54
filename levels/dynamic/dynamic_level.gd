@@ -24,6 +24,7 @@ extends StaticBody3D
 		$DoorFrame.next_room = value
 
 var walls: MultiMeshInstance3D
+var bottom_wall: MultiMeshInstance3D
 
 
 func _enter_tree() -> void:
@@ -40,8 +41,11 @@ func recreate() -> void:
 func _recreate_meshes() -> void:
 	if walls == null:
 		walls = get_node("Walls")
-	assert(walls != null)
+	if bottom_wall == null:
+		bottom_wall = get_node("BottomWall")
+	assert(walls != null and bottom_wall != null)
 	walls.multimesh.instance_count = width * 2 + height * 2 - 4
+	bottom_wall.multimesh.instance_count = width
 
 	var i = 0
 	for w in range(width):
@@ -50,10 +54,6 @@ func _recreate_meshes() -> void:
 				i, Transform3D(Basis(), Vector3(-width / 2.0 + w, 0, -height / 2.0))
 			)
 			i += 1
-		walls.multimesh.set_instance_transform(
-			i, Transform3D(Basis(), Vector3(-width / 2.0 + w, 0, height / 2.0 - 1))
-		)
-		i += 1
 
 	for h in range(height - 1):
 		walls.multimesh.set_instance_transform(
@@ -64,6 +64,11 @@ func _recreate_meshes() -> void:
 			i, Transform3D(Basis(), Vector3(width / 2.0 - 1, 0, -height / 2.0 + h + 1))
 		)
 		i += 1
+
+	for w in range(width - 2):
+		bottom_wall.multimesh.set_instance_transform(
+			w, Transform3D(Basis(), Vector3(-width / 2.0 + w + 1, 0, height / 2.0 - 1))
+		)
 
 
 func _resize_floor() -> void:

@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpef7t0yoxgt4"]
+
+[ext_resource type="PackedScene" uid="uid://ct2m0oxhf7j6f" path="res://enemies/pentagon/pentagon.glb" id="1_gjywr"]
+[ext_resource type="Shader" path="res://endesga-32.gdshader" id="2_b3qiw"]
+[ext_resource type="Texture2D" uid="uid://c8i0at6in0hl" path="res://assets/endesga-32-32x.png" id="3_14eto"]
+[ext_resource type="PackedScene" uid="uid://bb7i7hdt3bksq" path="res://projectile_spawner/projectile_spawner.tscn" id="4_p0wej"]
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="5_0j4xn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aei8b"]
+render_priority = 0
+shader = ExtResource("2_b3qiw")
+shader_parameter/color_index = 28
+shader_parameter/albedo = ExtResource("3_14eto")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3nw7b"]
+points = PackedVector3Array(0.4226, 0.316233, 0.578567, -0.0210506, 0.189458, -0.710567, -0.0632842, 0.189458, -0.689367, 0.4226, 0.189458, 0.578567, -0.443783, 0.316233, 0.536168, 0.61285, 0.316233, -0.287838, -0.4226, 0.189458, 0.578567, -0.676267, 0.316233, -0.224492, 0.676267, 0.189458, -0.224492, -0.676267, 0.189458, -0.224492, 0.0210506, 0.316233, -0.710567, 0.655084, 0.316233, -0.0976731, 0.0632842, 0.189458, -0.689367, -0.4226, 0.316233, 0.578567, -0.655084, 0.189458, -0.0976731, -0.0632842, 0.316233, -0.689367, -0.61285, 0.189458, -0.287838, 0.655084, 0.189458, -0.0976731, -0.655084, 0.316233, -0.0976731, -0.528251, 0.316233, -0.351184, 0.676267, 0.316233, -0.224492, 0.61285, 0.189458, -0.287838, 0.443783, 0.316233, 0.536168, 0.0632842, 0.316233, -0.689367, -0.443783, 0.189458, 0.536168, 0.443783, 0.189458, 0.536168, 0.676267, 0.189458, -0.182219, -0.676267, 0.316233, -0.182219, 0.528251, 0.189458, -0.351184, -0.61285, 0.316233, -0.287838, 0.676267, 0.316233, -0.182219, -0.676267, 0.189458, -0.182219)
+
+[node name="Pentagon" instance=ExtResource("1_gjywr")]
+sync_to_physics = false
+script = ExtResource("5_0j4xn")
+
+[node name="Pentagon" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_aei8b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+shape = SubResource("ConvexPolygonShape3D_3nw7b")
+
+[node name="Projectile Spawners" type="Node3D" parent="." index="2"]
+
+[node name="Pair 1" type="Node3D" parent="Projectile Spawners" index="0"]
+
+[node name="1" parent="Projectile Spawners/Pair 1" index="0" instance=ExtResource("4_p0wej")]
+transform = Transform3D(0.951057, -2.23935e-16, 0.309017, 3.48787e-16, 1, -3.48787e-16, -0.309017, 4.39497e-16, 0.951057, -0.620819, 0, -0.240692)
+color_index = 28
+
+[node name="2" parent="Projectile Spawners/Pair 1" index="1" instance=ExtResource("4_p0wej")]
+transform = Transform3D(-0.951057, 2.23935e-16, -0.309017, 3.48787e-16, 1, -3.48787e-16, 0.309017, -4.39497e-16, -0.951057, -0.362763, 0, 0.557588)
+color_index = 28
+
+[node name="Pair 2" type="Node3D" parent="Projectile Spawners" index="1"]
+transform = Transform3D(0.309017, -4.39497e-16, -0.951057, 3.48787e-16, 1, -3.48787e-16, 0.951057, -2.23935e-16, 0.309017, 0, 0, 0)
+
+[node name="1" parent="Projectile Spawners/Pair 2" index="0" instance=ExtResource("4_p0wej")]
+transform = Transform3D(0.951057, -2.23935e-16, 0.309017, 3.48787e-16, 1, -3.48787e-16, -0.309017, 4.39497e-16, 0.951057, -0.620819, 0, -0.240692)
+color_index = 28
+
+[node name="2" parent="Projectile Spawners/Pair 2" index="1" instance=ExtResource("4_p0wej")]
+transform = Transform3D(-0.951057, 2.23935e-16, -0.309017, 3.48787e-16, 1, -3.48787e-16, 0.309017, -4.39497e-16, -0.951057, -0.362763, 0, 0.557588)
+color_index = 28
+
+[node name="Pair 3" type="Node3D" parent="Projectile Spawners" index="2"]
+transform = Transform3D(-0.809017, 7.71628e-17, -0.587785, 3.48787e-16, 1, -3.48787e-16, 0.587785, -4.87186e-16, -0.809017, 0, 0, 0)
+
+[node name="1" parent="Projectile Spawners/Pair 3" index="0" instance=ExtResource("4_p0wej")]
+transform = Transform3D(0.951057, -2.23935e-16, 0.309017, 3.48787e-16, 1, -3.48787e-16, -0.309017, 4.39497e-16, 0.951057, -0.620819, 0, -0.240692)
+color_index = 28
+
+[node name="2" parent="Projectile Spawners/Pair 3" index="1" instance=ExtResource("4_p0wej")]
+transform = Transform3D(-0.951057, 2.23935e-16, -0.309017, 3.48787e-16, 1, -3.48787e-16, 0.309017, -4.39497e-16, -0.951057, -0.362763, 0, 0.557588)
+color_index = 28
+
+[node name="Pair 4" type="Node3D" parent="Projectile Spawners" index="3"]
+transform = Transform3D(-0.809017, 4.87186e-16, 0.587785, 3.48787e-16, 1, -3.48787e-16, -0.587785, -7.71627e-17, -0.809017, 0, 0, 0)
+
+[node name="1" parent="Projectile Spawners/Pair 4" index="0" instance=ExtResource("4_p0wej")]
+transform = Transform3D(0.951057, -2.23935e-16, 0.309017, 3.48787e-16, 1, -3.48787e-16, -0.309017, 4.39497e-16, 0.951057, -0.620819, 0, -0.240692)
+color_index = 28
+
+[node name="2" parent="Projectile Spawners/Pair 4" index="1" instance=ExtResource("4_p0wej")]
+transform = Transform3D(-0.951057, 2.23935e-16, -0.309017, 3.48787e-16, 1, -3.48787e-16, 0.309017, -4.39497e-16, -0.951057, -0.362763, 0, 0.557588)
+color_index = 28
+
+[node name="Pair 5" type="Node3D" parent="Projectile Spawners" index="4"]
+transform = Transform3D(0.309017, 2.23935e-16, 0.951057, 3.48787e-16, 1, -3.48787e-16, -0.951057, 4.39497e-16, 0.309017, 0, 0, 0)
+
+[node name="1" parent="Projectile Spawners/Pair 5" index="0" instance=ExtResource("4_p0wej")]
+transform = Transform3D(0.951057, -2.23935e-16, 0.309017, 3.48787e-16, 1, -3.48787e-16, -0.309017, 4.39497e-16, 0.951057, -0.620819, 0, -0.240692)
+color_index = 28
+
+[node name="2" parent="Projectile Spawners/Pair 5" index="1" instance=ExtResource("4_p0wej")]
+transform = Transform3D(-0.951057, 2.23935e-16, -0.309017, 3.48787e-16, 1, -3.48787e-16, 0.309017, -4.39497e-16, -0.951057, -0.362763, 0, 0.557588)
+color_index = 28

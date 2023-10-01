@@ -1,0 +1,139 @@
+[gd_scene load_steps=9 format=3 uid="uid://diung4fugy14w"]
+
+[ext_resource type="Environment" uid="uid://72wy6b7c3sxo" path="res://environment.tres" id="1_jhh8u"]
+[ext_resource type="PackedScene" uid="uid://bxs22didvyp2o" path="res://levels/dynamic/dynamic_level.tscn" id="2_ldnuq"]
+[ext_resource type="PackedScene" uid="uid://dx0gdjo2whej4" path="res://player/player.tscn" id="3_086ke"]
+[ext_resource type="PackedScene" uid="uid://cmaggl3q1u7is" path="res://enemies/cube/cube.tscn" id="4_fvytu"]
+
+[sub_resource type="Animation" id="Animation_6urmj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4, 0, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("center:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("right:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4, 0, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_lex0i"]
+resource_name = "movement"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-4, 0, 3), Vector3(-4, 0, -4), Vector3(-4, 0, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("center:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -4), Vector3(0, 0, 3), Vector3(0, 0, -4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("right:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(4, 0, 3), Vector3(4, 0, -4), Vector3(4, 0, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uexbo"]
+_data = {
+"RESET": SubResource("Animation_6urmj"),
+"movement": SubResource("Animation_lex0i")
+}
+
+[sub_resource type="GDScript" id="GDScript_p3yp4"]
+script/source = "extends AnimationPlayer
+
+
+func _ready() -> void:
+	play(\"movement\")
+"
+
+[node name="Level 1" type="Node3D" groups=["level"]]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_jhh8u")
+
+[node name="Dynamic Level" parent="." instance=ExtResource("2_ldnuq")]
+next_room = "res://levels/level_2.tscn"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2.08165e-12, 8, 7)
+projection = 1
+current = true
+size = 9.0
+far = 30.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 4.85905e-10, 1.93033e-08, -1.93033e-08, 1.93034e-08, 1, 4.85905e-10, -1, 1.93034e-08, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("3_086ke")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="left" parent="Enemies" instance=ExtResource("4_fvytu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 3)
+
+[node name="center" parent="Enemies" instance=ExtResource("4_fvytu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="right" parent="Enemies" instance=ExtResource("4_fvytu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies"]
+libraries = {
+"": SubResource("AnimationLibrary_uexbo")
+}
+script = SubResource("GDScript_p3yp4")

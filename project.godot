@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ludum Dare 54"
-run/main_scene="res://levels/1/level_1.tscn"
+run/main_scene="res://levels/level_1.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 
 [autoload]
@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 EventBus="*res://event_bus.gd"
 GameState="*res://game_state.gd"
 Transition="*res://levels/transition.tscn"
+Healthbar="*res://player/healthbar.tscn"
 
 [display]
 

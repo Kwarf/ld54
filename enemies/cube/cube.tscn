@@ -15,6 +15,7 @@ shader_parameter/albedo = ExtResource("4_15mpx")
 [sub_resource type="BoxShape3D" id="BoxShape3D_wwvow"]
 
 [node name="Cube2" instance=ExtResource("1_o6g0e")]
+sync_to_physics = false
 script = ExtResource("2_s2hwu")
 
 [node name="Cube" parent="." index="0"]

@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqjxkkui07bn5"]
+
+[ext_resource type="Environment" uid="uid://72wy6b7c3sxo" path="res://environment.tres" id="1_kix7e"]
+[ext_resource type="PackedScene" uid="uid://bxs22didvyp2o" path="res://levels/dynamic/dynamic_level.tscn" id="2_li2pw"]
+[ext_resource type="PackedScene" uid="uid://dx0gdjo2whej4" path="res://player/player.tscn" id="3_glkob"]
+[ext_resource type="PackedScene" uid="uid://bpef7t0yoxgt4" path="res://enemies/pentagon/pentagon.tscn" id="4_8ojwt"]
+
+[sub_resource type="Animation" id="Animation_6urmj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pentagon_L:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pentagon_R:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lex0i"]
+resource_name = "movement"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pentagon_L:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.48787e-16, 6.28319, 3.48787e-16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pentagon_R:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.48787e-16, -6.28319, 3.48787e-16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uexbo"]
+_data = {
+"RESET": SubResource("Animation_6urmj"),
+"movement": SubResource("Animation_lex0i")
+}
+
+[sub_resource type="GDScript" id="GDScript_p3yp4"]
+script/source = "extends AnimationPlayer
+
+
+func _ready() -> void:
+	play(\"movement\")
+"
+
+[node name="Level 6" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_kix7e")
+
+[node name="Dynamic Level" parent="." instance=ExtResource("2_li2pw")]
+width = 6
+height = 4
+next_room = "res://levels/level_7.tscn"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2.08165e-12, 8, 7)
+projection = 1
+current = true
+size = 9.0
+far = 30.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 4.85905e-10, 1.93033e-08, -1.93033e-08, 1.93034e-08, 1, 4.85905e-10, -1, 1.93034e-08, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("3_glkob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Pentagon_L" parent="Enemies" instance=ExtResource("4_8ojwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
+bullet_interval = 0.5
+
+[node name="Pentagon_R" parent="Enemies" instance=ExtResource("4_8ojwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0)
+bullet_interval = 0.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies" groups=["level"]]
+libraries = {
+"": SubResource("AnimationLibrary_uexbo")
+}
+script = SubResource("GDScript_p3yp4")

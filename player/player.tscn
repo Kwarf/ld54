@@ -26,7 +26,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
+"args": [6.0],
 "method": &"spawn"
 }]
 }
@@ -37,7 +37,7 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rnanw"]
-radius = 0.25
+radius = 0.1
 height = 1.0
 
 [node name="Player" instance=ExtResource("1_sgjy7")]

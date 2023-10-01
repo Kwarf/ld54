@@ -23,7 +23,7 @@ func shoot() -> void:
 	# Trigger all ProjectileSpawner nodes of this enemy
 	for node in find_children("*", "ProjectileSpawner"):
 		if node is ProjectileSpawner:
-			node.spawn()
+			node.spawn(2.0)
 
 
 func take_damage() -> void:

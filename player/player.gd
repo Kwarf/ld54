@@ -7,7 +7,6 @@ const SPEED = 5.0
 @onready var bullet_timer: AnimationPlayer = $"Player/Bullet Spawner/Timer"
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var health: int = 3
 
 
 func _ready() -> void:
@@ -46,6 +45,6 @@ func _physics_process(delta: float) -> void:
 
 
 func take_damage() -> void:
-	self.health -= 1
-	if health <= 0:
-		get_tree().quit()
+	GameState.current_health -= 1
+	if GameState.current_health <= 0:
+		GameState.reload_level()
