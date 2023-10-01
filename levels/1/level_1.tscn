@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://diung4fugy14w"]
+[gd_scene load_steps=9 format=3 uid="uid://diung4fugy14w"]
 
 [ext_resource type="Environment" uid="uid://72wy6b7c3sxo" path="res://environment.tres" id="1_gmus5"]
-[ext_resource type="PackedScene" uid="uid://fxmgofl8el0v" path="res://levels/1/floor.tscn" id="1_pd11l"]
-[ext_resource type="PackedScene" uid="uid://cxrgxd1luspma" path="res://levels/1/walls.tscn" id="2_28sfa"]
-[ext_resource type="PackedScene" uid="uid://0pbhqk6lles7" path="res://levels/door_frame.tscn" id="3_n2tk0"]
+[ext_resource type="PackedScene" uid="uid://bxs22didvyp2o" path="res://levels/dynamic/dynamic_level.tscn" id="4_wl6oq"]
 [ext_resource type="PackedScene" uid="uid://dx0gdjo2whej4" path="res://player/player.tscn" id="5_plc43"]
 [ext_resource type="PackedScene" uid="uid://cmaggl3q1u7is" path="res://enemies/cube/cube.tscn" id="6_ch3q7"]
 
@@ -106,11 +104,7 @@ func _ready() -> void:
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_gmus5")
 
-[node name="Floor" parent="." instance=ExtResource("1_pd11l")]
-
-[node name="Walls" parent="." instance=ExtResource("2_28sfa")]
-
-[node name="DoorFrame" parent="." instance=ExtResource("3_n2tk0")]
+[node name="Dynamic Level" parent="." instance=ExtResource("4_wl6oq")]
 next_room = "res://levels/1/level_1.tscn"
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -125,7 +119,7 @@ transform = Transform3D(1, 4.85905e-10, 1.93033e-08, -1.93033e-08, 1.93034e-08, 
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("5_plc43")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [node name="Enemies" type="Node3D" parent="."]
 

@@ -1,0 +1,76 @@
+[gd_scene load_steps=15 format=3 uid="uid://bxs22didvyp2o"]
+
+[ext_resource type="Script" path="res://levels/dynamic/dynamic_level.gd" id="1_eewps"]
+[ext_resource type="ArrayMesh" uid="uid://bavu7qh5e1ybj" path="res://levels/dynamic/wall.mesh" id="2_7d140"]
+[ext_resource type="PackedScene" uid="uid://0pbhqk6lles7" path="res://levels/door_frame.tscn" id="2_xolve"]
+[ext_resource type="Shader" path="res://endesga-32.gdshader" id="3_dngav"]
+[ext_resource type="Texture2D" uid="uid://c8i0at6in0hl" path="res://assets/endesga-32-32x.png" id="4_pdkei"]
+[ext_resource type="Texture2D" uid="uid://bcheohws40164" path="res://assets/floor_N.png" id="6_841in"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ulr5y"]
+render_priority = 0
+shader = ExtResource("3_dngav")
+shader_parameter/color_index = 22
+shader_parameter/albedo = ExtResource("4_pdkei")
+
+[sub_resource type="MultiMesh" id="MultiMesh_mycxx"]
+transform_format = 1
+instance_count = 54
+mesh = ExtResource("2_7d140")
+buffer = PackedFloat32Array(1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, -7, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, -7, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, -6, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, -6, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, -5, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, -5, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, -4, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, -4, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, -3, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, -3, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, -2, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, -2, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, -1, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, 2, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, 2, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, 3, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, 3, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, 4, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, 4, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, 5, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, 5, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, 6, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, 6, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, -6.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, -5.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, -5.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, -4.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, -4.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, -3.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, -3.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, -2.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, -2.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, -1.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, -1.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, -0.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, -0.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, 0.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, 0.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, 1.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, 1.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, 2.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, 2.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, 3.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, 3.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, 4.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, 4.5, 1, 0, 0, -8, 0, 1, 0, 0, 0, 0, 1, 5.5, 1, 0, 0, 7, 0, 1, 0, 0, 0, 0, 1, 5.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cpeb2"]
+size = Vector3(7, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p4uw0"]
+size = Vector3(1, 1, 11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_va2ma"]
+size = Vector3(16, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xcorv"]
+size = Vector2(16, 13)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkqav"]
+albedo_color = Color(0.14902, 0.168627, 0.266667, 1)
+normal_enabled = true
+normal_texture = ExtResource("6_841in")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_mlcwt"]
+
+[node name="Dynamic Level" type="StaticBody3D"]
+script = ExtResource("1_eewps")
+
+[node name="DoorFrame" parent="." instance=ExtResource("2_xolve")]
+
+[node name="Walls" type="MultiMeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.08165e-12, 0.5)
+material_override = SubResource("ShaderMaterial_ulr5y")
+multimesh = SubResource("MultiMesh_mycxx")
+
+[node name="TopLeft" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.5, -6)
+shape = SubResource("BoxShape3D_cpeb2")
+
+[node name="TopRight" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.5, -6)
+shape = SubResource("BoxShape3D_cpeb2")
+
+[node name="Left" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.5, 0)
+shape = SubResource("BoxShape3D_p4uw0")
+
+[node name="Right" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.5, 0)
+shape = SubResource("BoxShape3D_p4uw0")
+
+[node name="Bottom" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 6)
+shape = SubResource("BoxShape3D_va2ma")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_xcorv")
+surface_material_override/0 = SubResource("StandardMaterial3D_wkqav")
+
+[node name="FloorCollider" type="CollisionShape3D" parent="."]
+shape = SubResource("WorldBoundaryShape3D_mlcwt")

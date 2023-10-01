@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c4jl12sxn3d1g"
-path="res://.godot/imported/walls.glb-863f34ab84a0d53458cd8487427e579c.scn"
+uid="uid://ceci1ticgjgif"
+path="res://.godot/imported/wall.glb-0d975f003bda7de80f80d64d6f242bc2.scn"
 
 [deps]
 
-source_file="res://levels/1/walls.glb"
-dest_files=["res://.godot/imported/walls.glb-863f34ab84a0d53458cd8487427e579c.scn"]
+source_file="res://levels/dynamic/wall.glb"
+dest_files=["res://.godot/imported/wall.glb-0d975f003bda7de80f80d64d6f242bc2.scn"]
 
 [params]
 
 nodes/root_type="StaticBody3D"
-nodes/root_name="Walls"
+nodes/root_name="Wall"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
